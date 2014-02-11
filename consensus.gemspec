@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Consensus::VERSION
   spec.authors       = ["Steve Jorgensen"]
   spec.email         = ["stevej@stevej.name"]
-  spec.summary       = %q{A data stransfer object that can have lazy attributes.}
-  spec.description   = %q{A data stransfer object that can have lazy attributes.}
+  spec.summary       = %q{A data transfer object that can have lazy attributes.}
+  spec.description   = %q{A data transfer object that can have lazy attributes.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
