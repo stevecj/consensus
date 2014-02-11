@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Rendition::Portrayal do
   describe '.attribute' do
+    let(:instance){ klass.new }
+
     describe "given a simple attribute name" do
-      let(:instance){ klass.new }
       let(:klass){ Class.new(described_class) do
         attribute :the_attribute
       end }
@@ -14,8 +15,18 @@ describe Rendition::Portrayal do
       end
     end
 
+    describe "given a name ending in \"?\"" do
+      let(:klass){ Class.new(described_class) do
+        attribute :ya_think?
+      end }
+
+      it "defines a non-\"?\" setter with a \"?\" getter" do
+        instance.ya_think = :yes_i_do
+        expect( instance.ya_think? ).to eq(:yes_i_do)
+      end
+    end
+
     describe "given multiple attribute names" do
-      let(:instance){ klass.new }
       let(:klass){ Class.new(described_class) do
         attribute :a1, :a2, :a3
       end }
