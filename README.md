@@ -61,7 +61,7 @@ instance of the class.
       private
 
       def user_record
-        User.where(name: name).first
+        @user_record ||= User.where(name: name).first
       end
     end
 
