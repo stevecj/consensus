@@ -1,5 +1,5 @@
 require "rendition/version"
+require "rendition/portrayal"
 
 module Rendition
-  # Your code goes here...
 end
