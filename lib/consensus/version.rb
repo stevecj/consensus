@@ -1,3 +1,3 @@
-module Rendition
+module Consensus
   VERSION = "0.0.1"
 end

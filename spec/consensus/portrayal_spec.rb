@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Rendition::Portrayal do
+describe Consensus::Portrayal do
   describe '.attribute' do
     let(:instance){ klass.new }
 

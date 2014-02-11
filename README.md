@@ -1,6 +1,6 @@
-# Rendition
+# Consensus
 
-Defines a Rendition::Portrayal base class for objects that each
+Defines a Consensus::Portrayal base class for objects that each
 have specific attributes, and each attribute can be backed by either
 a simple value or a lazy (callable) object to resolve the value if
 and when it is requested. Attribute values are memoized after being
@@ -10,7 +10,7 @@ resolved from callables.
 
 Add this line to your application's Gemfile:
 
-    gem 'rendition'
+    gem 'consensus'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rendition
+    $ gem install consensus
 
 ## Usage
 

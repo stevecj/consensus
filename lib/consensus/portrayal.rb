@@ -1,4 +1,4 @@
-module Rendition
+module Consensus
   class Portrayal
 
     class << self

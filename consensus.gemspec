@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rendition/version'
+require 'consensus/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rendition"
-  spec.version       = Rendition::VERSION
+  spec.name          = "consensus"
+  spec.version       = Consensus::VERSION
   spec.authors       = ["Steve Jorgensen"]
   spec.email         = ["stevej@stevej.name"]
   spec.summary       = %q{A data stransfer object that can have lazy attributes.}
