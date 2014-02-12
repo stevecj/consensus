@@ -7,12 +7,12 @@ and as test doubles in tests.
 
 A problem that frequently arises when testing code in a dynamic
 language such as Ruby is that there is nothing to ensure that
-the APIs of test double objects (mocks and stubs) implemnt the
+the APIs of test double objects (mocks and stubs) implement the
 same APIs as the objects that will be given to the code under test
 and that this remains true as the code changes over time.
 
-That situation can be improved through the use of simple struct-
-like objects to pass data around, but those objects can be a poor
+That situation can be improved through the use of simple struct-like
+objects to pass data around, but those objects can be a poor
 fit in many cases such as a view model that exposes data that will
 not necessarily be consumed and is costly to produce.
 
@@ -69,8 +69,8 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/consensus/fork )
+1. Fork it (http://github.com/stevecj/consensus/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Create a new pull request
