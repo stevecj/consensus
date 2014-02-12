@@ -26,5 +26,22 @@ module Consensus
 
     end
 
+    def fill_from(source, attr_names, options={})
+      lazy = options[:lazy]
+      attr_names.each do |name|
+        base_name = name.to_s.sub(/\?$/, '')
+        value = lazy ?
+          lazy_source_attr_fetcher(source, name) :
+          source.send(name)
+        self.send "#{base_name}=", value
+      end
+    end
+
+    private
+
+    def lazy_source_attr_fetcher(source, attr_name)
+      ->{ source.send(attr_name) }
+    end
+
   end
 end
