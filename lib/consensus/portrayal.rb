@@ -28,6 +28,9 @@ module Consensus
 
     def fill_from(source, attr_names, options={})
       lazy = options[:lazy]
+      if lazy && source.respond_to?(:call)
+        source = callable_source_memoizer(source)
+      end
       attr_names.each do |name|
         base_name = name.to_s.sub(/\?$/, '')
         value = lazy ?
@@ -39,8 +42,24 @@ module Consensus
 
     private
 
+    def callable_source_memoizer(source)
+      resolved_source = nil
+      ->{
+        if source
+          resolved_source = source.call
+          source = nil
+        end
+        resolved_source
+      }
+    end
+
     def lazy_source_attr_fetcher(source, attr_name)
-      ->{ source.send(attr_name) }
+      ->{
+        if source.respond_to?(:call)
+          source = source.call
+        end
+        source.send(attr_name)
+      }
     end
 
   end

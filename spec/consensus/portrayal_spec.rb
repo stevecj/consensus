@@ -100,5 +100,19 @@ describe Consensus::Portrayal do
       expect( source_obj ).to have_received( :a1 ).once
       expect( source_obj ).to have_received( :a2 ).once
     end
+
+    it "lazily resolves the callable source when the lazy option is specified" do
+      resolved_source = double(:source_obj, a1: :ay_one, a2: :ay_two)
+      callable_source = double(:callable_source, call: resolved_source)
+
+      subject.fill_from callable_source, [:a1, :a2], lazy: true
+      expect( callable_source ).not_to have_received( :call )
+
+      expect( subject.a1 ).to eq( :ay_one )
+      expect( callable_source ).to have_received( :call ).once
+
+      expect( subject.a2 ).to eq( :ay_two )
+      expect( callable_source ).to have_received( :call ).once
+    end
   end
 end
