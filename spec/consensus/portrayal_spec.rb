@@ -39,6 +39,16 @@ describe Consensus::Portrayal do
     end
   end
 
+  describe '.defined_attributes' do
+    let(:klass){ Class.new(described_class) do
+      attribute :a1, 'a2', :a3
+    end }
+
+    it "returns a list of symbolic names of all defined attributes" do
+      expect( klass.defined_attributes ).to eq( [:a1, :a2, :a3] )
+    end
+  end
+
   describe "an instance attribute defined using .attribute" do
     subject{ klass.new }
     let(:klass){ Class.new(described_class) do
@@ -82,6 +92,26 @@ describe Consensus::Portrayal do
       source_obj = double(:source_obj, :eh? => :nope)
       subject.fill_from source_obj, [:eh?]
       expect( subject.eh? ).to eq( :nope )
+    end
+
+    context "using default attribute names" do
+      let(:klass){ Class.new(described_class) do
+        attribute :a1, :a2, :a3
+      end }
+      let(:source_obj){ double(:source_obj, a1: 1, a2: 2, a3: 3) }
+
+      after do
+        s = subject
+        expect( [s.a1, s.a2, s.a3] ).to eq( [1, 2, 3] )
+      end
+
+      it "fills all attributes when no names argument is given" do
+        subject.fill_from source_obj
+      end
+
+      it "fills all attributes when a nil names argument is given" do
+        subject.fill_from source_obj
+      end
     end
 
     it "lazily fills attributes from the source object when the lazy option is specified" do

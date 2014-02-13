@@ -2,12 +2,19 @@ module Consensus
   class Portrayal
 
     class << self
-
       def attribute(*names)
         names.each do |n| ; define_attribute(n) ; end
       end
 
+      def defined_attributes
+        _defined_attributes.dup
+      end
+
       private
+
+      def _defined_attributes
+        @_defined_attributes ||= []
+      end
 
       def define_attribute name
         base_name = name.to_s.sub(/\?$/, '')
@@ -22,11 +29,14 @@ module Consensus
             end
           end
         EOS
+
+        _defined_attributes << name.to_sym
       end
 
     end
 
-    def fill_from(source, attr_names, options={})
+    def fill_from(source, attr_names = nil, options={})
+      attr_names ||= self.class.defined_attributes
       lazy = options[:lazy]
       if lazy && source.respond_to?(:call)
         source = callable_source_memoizer(source)
